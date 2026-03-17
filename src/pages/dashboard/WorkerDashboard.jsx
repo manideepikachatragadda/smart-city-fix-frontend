@@ -135,24 +135,23 @@ const WorkerDashboard = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center relative overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="w-full min-h-[60vh] flex flex-col items-center justify-center relative">
                 <Loader2 className="w-12 h-12 text-indigo-500 animate-spin mb-4 relative z-10" />
-                <p className="text-zinc-400 font-medium tracking-wide relative z-10 animate-pulse">Syncing tasks...</p>
+                <p className="text-slate-500 dark:text-zinc-400 font-medium tracking-wide relative z-10 animate-pulse">Syncing tasks...</p>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-zinc-950 text-zinc-100 relative overflow-hidden font-sans pb-24 selection:bg-indigo-500/30">
+        <div className="w-full text-slate-800 dark:text-zinc-100 relative font-sans selection:bg-indigo-500/30">
             {/* Ambient Background Glows */}
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+            <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
             {/* Grid Pattern Overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
+            <div className="fixed inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0"></div>
 
-            <main className="relative z-10 max-w-lg mx-auto px-4 py-8 pt-20 flex flex-col min-h-screen">
+            <div className="relative z-10 max-w-lg mx-auto px-4 flex flex-col min-h-[calc(100vh-16rem)] pt-6 pb-2">
                 {/* Header */}
                 <header className="mb-8 flex-shrink-0 animate-in fade-in slide-in-from-top-4 duration-700">
                     <div className="flex items-center gap-3 mb-3">
@@ -161,15 +160,15 @@ const WorkerDashboard = () => {
                         </div>
                         <span className="text-sm font-bold tracking-widest text-indigo-400 uppercase">My Tasks</span>
                     </div>
-                    <h1 className="text-3xl font-extrabold text-white tracking-tight leading-tight">
+                    <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
                         Welcome back, <br className="block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
                             {currentUser?.first_name || currentUser?.name || 'Worker'}
                         </span>
                     </h1>
-                    <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
-                        <ShieldAlert className="w-4 h-4 text-zinc-400" />
-                        <span className="text-sm font-medium text-zinc-300">
+                    <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-full backdrop-blur-md">
+                        <ShieldAlert className="w-4 h-4 text-slate-500 dark:text-zinc-400" />
+                        <span className="text-sm font-medium text-slate-700 dark:text-zinc-300">
                             {complaints.length} active {complaints.length === 1 ? 'task' : 'tasks'}
                         </span>
                     </div>
@@ -179,11 +178,11 @@ const WorkerDashboard = () => {
                 <div className="flex-1 w-full space-y-5">
                     {complaints.length === 0 ? (
                         <div className="h-64 mt-12 flex flex-col items-center justify-center text-center px-4 animate-in fade-in zoom-in-95 duration-500">
-                            <div className="w-20 h-20 mb-6 bg-emerald-500/10 border border-emerald-500/20 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.15)]">
-                                <Coffee className="w-10 h-10 text-emerald-400" />
+                            <div className="w-20 h-20 mb-6 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.15)]">
+                                <Coffee className="w-10 h-10 text-emerald-500 dark:text-emerald-400" />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2">All caught up!</h3>
-                            <p className="text-zinc-400 tracking-wide text-sm font-medium">No pending tasks for today. ☕</p>
+                            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">All caught up!</h3>
+                            <p className="text-slate-500 dark:text-zinc-400 tracking-wide text-sm font-medium">No pending tasks for today. ☕</p>
                         </div>
                     ) : (
                         complaints.map((item, idx) => {
@@ -195,7 +194,7 @@ const WorkerDashboard = () => {
                             return (
                                 <div
                                     key={item.id}
-                                    className={`bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-5 flex flex-col relative overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 group ${glow}`}
+                                    className={`bg-white dark:bg-zinc-900/80 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-3xl p-5 flex flex-col relative overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 group ${glow}`}
                                     style={{ animationDelay: `${idx * 100}ms` }}
                                 >
                                     {/* Card Header */}
@@ -203,27 +202,27 @@ const WorkerDashboard = () => {
                                         <span className={`text-[10px] uppercase tracking-widest font-extrabold px-2.5 py-1.5 rounded-lg border ${badge}`}>
                                             {item.priority_level || 'Normal'} Priority
                                         </span>
-                                        <span className="text-[12px] font-bold text-zinc-500 bg-white/5 px-2.5 py-1.5 rounded-lg border border-white/5">
+                                        <span className="text-[12px] font-bold text-slate-500 dark:text-zinc-500 bg-white/5 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-white/5">
                                             #{String(item.id).substring(0, 6)}
                                         </span>
                                     </div>
 
                                     {/* Complaint Description */}
-                                    <h2 className="text-lg font-bold text-white mb-4 leading-snug">
+                                    <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 leading-snug">
                                         {item.description}
                                     </h2>
 
                                     {/* Meta Details */}
-                                    <div className="space-y-3 mb-5 bg-white/[0.02] p-4 rounded-2xl border border-white/5">
+                                    <div className="space-y-3 mb-5 bg-slate-50 dark:bg-white/[0.02] p-4 rounded-2xl border border-slate-100 dark:border-white/5">
                                         <div className="flex items-start gap-3">
                                             <MapPin className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
-                                            <span className="text-sm font-medium text-zinc-300 leading-tight">
+                                            <span className="text-sm font-medium text-slate-600 dark:text-zinc-300 leading-tight">
                                                 {item.location || 'Location not specified'}
                                             </span>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <Clock className="w-4 h-4 text-zinc-400 shrink-0" />
-                                            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                                            <Clock className="w-4 h-4 text-slate-500 dark:text-zinc-400 shrink-0" />
+                                            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-500">
                                                 {new Date(item.created_at || Date.now()).toLocaleString(undefined, {
                                                     month: 'short',
                                                     day: 'numeric',
@@ -232,15 +231,30 @@ const WorkerDashboard = () => {
                                                 })}
                                             </span>
                                         </div>
+                                        {item.estimated_resolution_time && (
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-4 h-4 border-2 border-emerald-400 rounded-full flex shrink-0 items-center justify-center">
+                                                    <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                                                </div>
+                                                <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                                                    DUE: {new Date(item.estimated_resolution_time).toLocaleString(undefined, {
+                                                        month: 'short',
+                                                        day: 'numeric',
+                                                        hour: '2-digit',
+                                                        minute: '2-digit'
+                                                    })}
+                                                </span>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* ─── Resolution Section ─── */}
-                                    <div className="border-t border-white/5 pt-5 mt-auto space-y-4">
-                                        <p className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold">Proof of Work</p>
+                                    <div className="border-t border-slate-100 dark:border-white/5 pt-5 mt-auto space-y-4">
+                                        <p className="text-[11px] uppercase tracking-widest text-slate-500 dark:text-zinc-500 font-bold">Proof of Work</p>
 
                                         {/* Image Preview */}
                                         {previewUrl && (
-                                            <div className="relative group/preview rounded-2xl overflow-hidden border border-white/10 animate-in fade-in zoom-in-95 duration-300">
+                                            <div className="relative group/preview rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 animate-in fade-in zoom-in-95 duration-300">
                                                 <img
                                                     src={previewUrl}
                                                     alt="Proof preview"
@@ -248,7 +262,7 @@ const WorkerDashboard = () => {
                                                 />
                                                 <button
                                                     onClick={() => clearFile(item.id)}
-                                                    className="absolute top-2 right-2 p-1.5 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-red-500/80 transition-colors"
+                                                    className="absolute top-2 right-2 p-1.5 bg-white/80 dark:bg-black/60 backdrop-blur-md rounded-full text-slate-900 dark:text-white hover:bg-red-50 dark:hover:bg-red-500/80 transition-colors border border-slate-200 dark:border-transparent"
                                                     title="Remove image"
                                                 >
                                                     <X className="w-4 h-4" />
@@ -269,7 +283,7 @@ const WorkerDashboard = () => {
                                             disabled={isProcessing}
                                             className={`w-full flex items-center justify-center gap-3 py-3.5 px-5 rounded-2xl border-2 border-dashed transition-all duration-300 text-sm font-semibold ${hasFile
                                                 ? 'border-emerald-500/40 bg-emerald-500/5 text-emerald-400 hover:bg-emerald-500/10'
-                                                : 'border-white/10 bg-white/[0.02] text-zinc-400 hover:border-indigo-500/40 hover:bg-indigo-500/5 hover:text-indigo-400'
+                                                : 'border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] text-slate-500 dark:text-zinc-400 hover:border-indigo-500/40 hover:bg-indigo-500/5 hover:text-indigo-400'
                                                 }`}
                                         >
                                             <Camera className="w-5 h-5" />
@@ -303,7 +317,7 @@ const WorkerDashboard = () => {
                         })
                     )}
                 </div>
-            </main>
+            </div>
         </div>
     );
 };

@@ -62,17 +62,17 @@ const TeamManagement = () => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center h-48 bg-[#c7d2fe] dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 mb-8 shadow-sm w-full">
+            <div className="flex items-center justify-center h-48 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 mb-8 shadow-sm w-full">
                 <div className="w-8 h-8 border-4 border-indigo-200 dark:border-zinc-700 border-t-indigo-600 dark:border-t-indigo-400 rounded-full animate-spin"></div>
             </div>
         );
     }
 
     return (
-        <div className="mb-8 bg-[#c7d2fe] dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col relative w-full">
+        <div className="mb-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col relative w-full">
             <div className="px-6 py-5 border-b border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/50 flex items-center justify-between">
                 <h3 className="text-lg font-bold text-slate-800 dark:text-white">Team Management</h3>
-                <span className="text-sm font-medium text-slate-500 dark:text-zinc-400 bg-[#c7d2fe] dark:bg-zinc-800 px-3 py-1 rounded-full border border-slate-200 dark:border-zinc-700 shadow-sm">
+                <span className="text-sm font-medium text-slate-500 dark:text-zinc-400 bg-white dark:bg-zinc-800 px-3 py-1 rounded-full border border-slate-200 dark:border-zinc-700 shadow-sm">
                     {team.length} Member{team.length !== 1 && 's'}
                 </span>
             </div>
@@ -89,7 +89,7 @@ const TeamManagement = () => {
                         {team.map((user) => (
                             <div
                                 key={user.id}
-                                className="bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-zinc-800/50 transition-shadow relative group flex flex-col"
+                                className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-zinc-800/50 transition-shadow relative group flex flex-col"
                             >
                                 <div className="flex justify-between items-start mb-4">
                                     <div className="flex items-center gap-3">

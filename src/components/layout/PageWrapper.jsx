@@ -21,7 +21,7 @@ const PageWrapper = ({ children }) => {
     }, [location.pathname]);
 
     const isLanding = location.pathname === '/';
-    const bgClass = isLanding ? 'bg-transparent' : 'bg-[#e0e7ff] dark:bg-zinc-950';
+    const bgClass = isLanding ? 'bg-transparent' : 'bg-slate-50 dark:bg-zinc-950';
 
     return (
         <div ref={nodeRef} className={`min-h-screen ${bgClass} text-slate-800 dark:text-gray-100 flex flex-col`}>

@@ -61,7 +61,7 @@ const Home = () => {
         <PageWrapper>
             <main className="flex-grow flex flex-col relative pb-20 sm:pb-32">
                 {/* ── Hero Section with Globe ── */}
-                <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-[90vh] md:min-h-screen pt-16 bg-gradient-to-b from-[#040d21] via-[#062056] to-[#0a1628] dark:from-background dark:via-[#062056] dark:to-background">
+                <section className="relative z-10 flex flex-col items-center justify-center overflow-hidden min-h-[90vh] md:min-h-screen pt-16">
                     {/* Hero Text — always on top */}
                     <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 md:pt-16">
                         <motion.div
@@ -107,9 +107,6 @@ const Home = () => {
                         </motion.div>
                     </div>
 
-                    {/* Gradient fade from dark hero to dark content */}
-                    <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent to-[#0a1628] dark:to-background z-30" />
-
                     {/* Globe — positioned behind text at the bottom */}
                     <div className="absolute w-full bottom-0 sm:bottom-0 h-[60vh] sm:h-auto sm:inset-y-0 z-10 flex items-end sm:items-center justify-center pointer-events-none opacity-60 sm:opacity-100">
                         <Suspense fallback={
@@ -123,7 +120,7 @@ const Home = () => {
                 </section>
 
                 {/* ── Stats Bar ── */}
-                <section className="relative z-10 bg-[#0a1628] dark:bg-background py-16 border-t border-white/5 dark:border-transparent">
+                <section className="relative z-10 py-16">
                     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center pt-8">
                         {[
                             { value: '10K+', label: 'Issues Reported' },
@@ -140,7 +137,7 @@ const Home = () => {
                 </section>
 
                 {/* ── How It Works Section ── */}
-                <section className="relative z-10 bg-[#0a1628] dark:bg-background pb-28 sm:pb-36">
+                <section className="relative z-10 pb-28 sm:pb-36">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-14">
                             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">How it works</h2>

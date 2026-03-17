@@ -46,7 +46,7 @@ const DashboardOverview = ({ metrics, role }) => {
                     <div
                         key={i}
                         ref={el => statsRef.current[i] = el}
-                        className="bg-[#c7d2fe] dark:bg-zinc-800 rounded-2xl p-5 border border-gray-100 dark:border-zinc-700 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center gap-3 relative overflow-hidden group"
+                        className="bg-white dark:bg-zinc-800 rounded-2xl p-5 border border-gray-100 dark:border-zinc-700 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center gap-3 relative overflow-hidden group"
                     >
                         <div className={`p-3 rounded-xl ${stat.bg} group-hover:scale-110 transition-transform duration-300`}>
                             {stat.icon}
@@ -61,11 +61,11 @@ const DashboardOverview = ({ metrics, role }) => {
 
             {/* Distributions - Visible to Manager and Admin */}
             {role !== 'worker' && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 w-full max-w-full overflow-hidden">
                     {/* Category Distribution */}
                     <div
                         ref={el => distRef.current[0] = el}
-                        className="bg-[#c7d2fe] dark:bg-zinc-800 rounded-2xl p-6 border border-slate-200 dark:border-zinc-700 shadow-sm w-full"
+                        className="bg-white dark:bg-zinc-800 rounded-2xl p-6 border border-slate-200 dark:border-zinc-700 shadow-sm w-full"
                     >
                         <div className="flex items-center gap-2 mb-6">
                             <PieChartIcon className="text-indigo-500 w-5 h-5" />
@@ -121,15 +121,15 @@ const DashboardOverview = ({ metrics, role }) => {
                     {/* Priority Distribution */}
                     <div
                         ref={el => distRef.current[1] = el}
-                        className="bg-[#c7d2fe] dark:bg-zinc-800 rounded-2xl p-6 border border-slate-200 dark:border-zinc-700 shadow-sm flex flex-col w-full"
+                        className="bg-white dark:bg-zinc-800 rounded-2xl p-6 border border-slate-200 dark:border-zinc-700 shadow-sm flex flex-col w-full"
                     >
                         <div className="flex items-center gap-2 mb-6">
                             <AlertTriangle className="text-orange-500 dark:text-orange-400 w-5 h-5" />
                             <h3 className="text-lg font-bold text-slate-800 dark:text-white">Priority Levels</h3>
                         </div>
-                        <div className="flex flex-wrap gap-4 flex-grow items-center w-full">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full">
                             {Object.entries(metrics.priority_distribution || {}).length === 0 ? (
-                                <p className="text-sm text-slate-500 dark:text-zinc-400">No data available.</p>
+                                <p className="text-sm text-slate-500 dark:text-zinc-400 col-span-full">No data available.</p>
                             ) : (
                                 Object.entries(metrics.priority_distribution || {}).map(([key, val]) => {
                                     const colors = {
@@ -139,9 +139,9 @@ const DashboardOverview = ({ metrics, role }) => {
                                     };
                                     const colorClass = colors[key.toLowerCase()] || 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700';
                                     return (
-                                        <div key={key} className={`px-4 py-4 rounded-xl border flex flex-col items-center justify-center flex-1 min-w-[100px] transition-colors ${colorClass}`}>
-                                            <span className="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">{key}</span>
-                                            <span className="text-3xl font-extrabold">{val}</span>
+                                        <div key={key} className={`px-3 py-4 rounded-xl border flex flex-col items-center justify-center transition-colors ${colorClass}`}>
+                                            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider opacity-80 mb-1">{key}</span>
+                                            <span className="text-2xl sm:text-3xl font-extrabold">{val}</span>
                                         </div>
                                     );
                                 })

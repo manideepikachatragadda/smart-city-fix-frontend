@@ -39,7 +39,7 @@ const Feedback = () => {
     return (
         <PageWrapper>
             <main className="flex-grow flex items-center justify-center p-4 pt-24 pb-12 dark:bg-zinc-950">
-                <div className="w-full max-w-lg bg-[#c7d2fe] dark:bg-zinc-900 p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200 dark:shadow-zinc-900/50 border border-slate-100 dark:border-zinc-800 relative overflow-hidden text-center z-10">
+                <div className="w-full max-w-lg bg-white dark:bg-zinc-900 p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200 dark:shadow-zinc-900/50 border border-slate-100 dark:border-zinc-800 relative overflow-hidden text-center z-10">
 
                     {/* Decorative shapes */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-100 dark:bg-yellow-900/20 rounded-bl-full -z-10 opacity-50"></div>

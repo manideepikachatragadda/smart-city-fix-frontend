@@ -1,5 +1,5 @@
-// Service Worker v2 - Updated logo
-const SW_VERSION = 'v2';
+// Service Worker v3 - Fixed Android Notification Badge
+const SW_VERSION = 'v3';
 
 self.addEventListener('install', (event) => {
     self.skipWaiting();
@@ -14,8 +14,8 @@ self.addEventListener('push', function (event) {
         const data = event.data.json();
         const options = {
             body: data.body,
-            icon: '/logo.png',
-            badge: '/logo.png',
+            icon: '/logo.png', // Large icon
+            badge: '/badge.svg', // Small monochrome status bar icon
             vibrate: [200, 100, 200]
         };
         event.waitUntil(self.registration.showNotification(data.title, options));

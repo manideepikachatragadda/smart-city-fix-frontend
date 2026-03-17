@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import { CheckCircle, ArrowRight, Activity, ShieldAlert } from 'lucide-react';
+import { CheckCircle, ArrowRight, Activity, ShieldAlert, Clock } from 'lucide-react';
 import PageWrapper from '../../components/layout/PageWrapper';
 
 const ReportSuccess = () => {
@@ -41,7 +41,7 @@ const ReportSuccess = () => {
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-200 dark:bg-emerald-900/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-30 animate-blob"></div>
                 <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-200 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-30 animate-blob animation-delay-2000"></div>
 
-                <div className="success-card relative w-full max-w-lg bg-[#c7d2fe]/90 dark:bg-zinc-900/80 backdrop-blur-xl border border-slate-100 dark:border-zinc-800 p-8 md:p-12 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-zinc-900/50 text-center">
+                <div className="success-card relative w-full max-w-lg bg-white/90 dark:bg-zinc-900/80 backdrop-blur-xl border border-slate-100 dark:border-zinc-800 p-8 md:p-12 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-zinc-900/50 text-center">
                     <div className="w-20 h-20 bg-green-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner dark:shadow-emerald-900/20">
                         <CheckCircle className="w-10 h-10 text-green-500 dark:text-emerald-400" />
                     </div>
@@ -65,12 +65,12 @@ const ReportSuccess = () => {
                                 <span className="p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg"><CheckCircle size={18} /></span>
                                 <span className="font-medium">AI Classification</span>
                             </div>
-                            <span className="font-bold text-slate-800 dark:text-zinc-200 capitalize bg-[#c7d2fe] dark:bg-zinc-800 px-3 py-1 rounded-md border border-slate-200 dark:border-zinc-700 shadow-sm">
+                            <span className="font-bold text-slate-800 dark:text-zinc-200 capitalize bg-white dark:bg-zinc-800 px-3 py-1 rounded-md border border-slate-200 dark:border-zinc-700 shadow-sm">
                                 {state.classification?.replace('_', ' ') || 'Pending'}
                             </span>
                         </div>
 
-                        <div className="success-item flex items-center justify-between">
+                        <div className={`success-item flex items-center justify-between ${state.estimated_resolution_time ? 'pb-4 border-b border-slate-200/60 dark:border-zinc-700/60' : ''}`}>
                             <div className="flex items-center gap-3 text-slate-600 dark:text-zinc-300">
                                 <span className="p-2 bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg"><ShieldAlert size={18} /></span>
                                 <span className="font-medium">Priority Assessed</span>
@@ -82,6 +82,20 @@ const ReportSuccess = () => {
                                 {state.priority_level || 'Normal'}
                             </span>
                         </div>
+
+                        {state.estimated_resolution_time && (
+                            <div className="success-item flex items-center justify-between">
+                                <div className="flex items-center gap-3 text-slate-600 dark:text-zinc-300">
+                                    <span className="p-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg"><Clock size={18} /></span>
+                                    <span className="font-medium">Estimated Resolution</span>
+                                </div>
+                                <span className="font-medium text-slate-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 px-3 py-1 rounded-md border border-slate-200 dark:border-zinc-700 shadow-sm">
+                                    {new Date(state.estimated_resolution_time).toLocaleString('en-US', {
+                                        month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+                                    })}
+                                </span>
+                            </div>
+                        )}
                     </div>
 
                     <div className="success-item flex flex-col sm:flex-row gap-4">

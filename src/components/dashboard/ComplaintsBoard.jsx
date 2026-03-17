@@ -66,7 +66,7 @@ const ComplaintsBoard = ({ complaints, role, setSelectedComplaint, refreshData }
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 w-full mb-8">
             {role === 'admin' ? (
                 /* Admin Data Table */
-                <div className="bg-[#c7d2fe] dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col relative z-10 w-full">
+                <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col relative z-10 w-full">
                     <div className="px-6 py-5 border-b border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/50">
                         <h3 className="text-lg font-bold text-slate-800 dark:text-white">Recent Complaints</h3>
                     </div>
@@ -79,6 +79,7 @@ const ComplaintsBoard = ({ complaints, role, setSelectedComplaint, refreshData }
                                     <th className="px-6 py-4">Location</th>
                                     <th className="px-6 py-4">Status</th>
                                     <th className="px-6 py-4">Date</th>
+                                    <th className="px-6 py-4">Due Date</th>
                                     <th className="px-6 py-4 text-center">Action</th>
                                 </tr>
                             </thead>
@@ -97,6 +98,9 @@ const ComplaintsBoard = ({ complaints, role, setSelectedComplaint, refreshData }
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-slate-500 dark:text-zinc-400 text-sm">{new Date(item.created_at || Date.now()).toLocaleDateString()}</td>
+                                            <td className="px-6 py-4 text-slate-500 dark:text-zinc-400 text-sm font-medium">
+                                                {item.estimated_resolution_time ? new Date(item.estimated_resolution_time).toLocaleDateString() : 'N/A'}
+                                            </td>
                                             <td className="px-6 py-4 text-center">
                                                 <button className="text-slate-400 dark:text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800" onClick={(e) => { e.stopPropagation(); setSelectedComplaint(item); }}>
                                                     <MoreVertical size={18} />
@@ -111,9 +115,9 @@ const ComplaintsBoard = ({ complaints, role, setSelectedComplaint, refreshData }
                 </div>
             ) : (
                 /* Manager Kanban Board */
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full">
                     {kanbanColumns.map((col, idx) => (
-                        <div key={col.status} ref={el => kanbanRef.current[idx] = el} className="bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-200 dark:border-zinc-800/50 p-4 shadow-sm flex flex-col h-[600px] w-full">
+                        <div key={col.status} ref={el => kanbanRef.current[idx] = el} className="bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border border-slate-200 dark:border-zinc-800/50 p-4 shadow-sm flex flex-col h-[450px] md:h-[600px] w-full">
                             <div className={`px-4 py-3 rounded-xl mb-4 text-sm font-bold flex justify-between items-center border ${col.headerBg}`}>
                                 <span className="uppercase tracking-wide">{col.title}</span>
                                 <span className="bg-white/60 dark:bg-black/20 px-2 py-0.5 rounded-md shadow-sm">
@@ -131,7 +135,7 @@ const ComplaintsBoard = ({ complaints, role, setSelectedComplaint, refreshData }
                                         <div
                                             key={item.id}
                                             onClick={() => setSelectedComplaint(item)}
-                                            className="bg-[#c7d2fe] dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 p-4 rounded-xl shadow-sm hover:shadow-md cursor-pointer transition-all hover:-translate-y-1 group"
+                                            className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 p-4 rounded-xl shadow-sm hover:shadow-md cursor-pointer transition-all hover:-translate-y-1 group"
                                         >
                                             <div className="flex justify-between items-start mb-3">
                                                 <span className="text-xs font-mono font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-2 py-1 rounded-md">#{String(item.id).substring(0, 8)}</span>
@@ -142,8 +146,15 @@ const ComplaintsBoard = ({ complaints, role, setSelectedComplaint, refreshData }
                                             <h4 className="font-bold text-slate-800 dark:text-white text-sm mb-1 line-clamp-2">{item.description}</h4>
                                             <p className="text-xs text-slate-500 dark:text-zinc-400 truncate mb-3">{item.location}</p>
                                             <div className="pt-3 border-t border-slate-100 dark:border-zinc-700 flex justify-between items-center">
-                                                <span className="text-xs font-medium text-slate-400 dark:text-zinc-500">{new Date(item.created_at || Date.now()).toLocaleDateString()}</span>
-                                                <div className="flex gap-1 items-center">
+                                                <div className="flex flex-col gap-1">
+                                                    <span className="text-xs font-medium text-slate-400 dark:text-zinc-500">{new Date(item.created_at || Date.now()).toLocaleDateString()}</span>
+                                                    {item.estimated_resolution_time && (
+                                                        <span className="text-[10px] uppercase font-bold text-emerald-600 dark:text-emerald-400 tracking-wider">
+                                                            DUE: {new Date(item.estimated_resolution_time).toLocaleDateString()}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <div className="flex flex-wrap gap-1 items-center">
                                                     {['pending', 'in_progress', 'rejected'].includes(item.status || 'pending') && (
                                                         <button
                                                             type="button"
@@ -162,7 +173,7 @@ const ComplaintsBoard = ({ complaints, role, setSelectedComplaint, refreshData }
                                                             <Eye size={12} /> Review
                                                         </button>
                                                     )}
-                                                    <button className="text-slate-300 group-hover:text-indigo-600 transition-colors p-1 rounded-md hover:bg-slate-50" onClick={(e) => { e.stopPropagation(); setSelectedComplaint(item); }}>
+                                                    <button className="text-slate-400 group-hover:text-indigo-600 transition-colors p-1 rounded-md hover:bg-slate-50" onClick={(e) => { e.stopPropagation(); setSelectedComplaint(item); }}>
                                                         <MoreVertical size={16} />
                                                     </button>
                                                 </div>

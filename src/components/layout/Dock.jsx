@@ -9,19 +9,15 @@ import {
     IconLogin,
     IconLogout,
     IconSettings,
-    IconSun,
-    IconMoon,
 } from "@tabler/icons-react";
 import useAuthStore from "../../contexts/AuthContext";
 import SettingsModal from "../ui/SettingsModal";
-import { useTheme } from "../../contexts/ThemeContext";
 
 export function FloatingDockDemo() {
     const { isAuthenticated, role, logout } = useAuthStore();
     const location = useLocation();
     const navigate = useNavigate();
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-    const { theme, setTheme } = useTheme();
 
     const normalizedRole = role?.toLowerCase();
     const isLanding = location.pathname === '/';
@@ -39,14 +35,6 @@ export function FloatingDockDemo() {
         title: "Home",
         icon: <IconHome className={`h-full w-full ${iconColor}`} />,
         href: "/",
-    });
-
-    // Theme Toggle
-    links.push({
-        title: theme === 'dark' ? "Light Mode" : "Dark Mode",
-        icon: theme === 'dark' ? <IconSun className={`h-full w-full ${iconColor}`} /> : <IconMoon className={`h-full w-full ${iconColor}`} />,
-        href: "#",
-        onClick: () => setTheme(theme === 'dark' ? 'light' : 'dark'),
     });
 
     if (!isAuthenticated) {
@@ -106,9 +94,9 @@ export function FloatingDockDemo() {
             <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
                 <FloatingDock
                     items={links}
-                    desktopClassName={`backdrop-blur-lg shadow-2xl border ${isLanding ? 'bg-black/40 border-white/10' : 'bg-[#c7d2fe]/80 border-indigo-100 dark:bg-zinc-900/80 dark:border-zinc-800'} rounded-2xl md:rounded-full px-5 py-2 transition-colors duration-300`}
-                    mobileClassName={`backdrop-blur-lg shadow-2xl border ${isLanding ? 'bg-black/40 border-white/10' : 'bg-[#c7d2fe]/80 border-indigo-100 dark:bg-zinc-900/80 dark:border-zinc-800'} rounded-2xl p-2 gap-3 transition-colors duration-300`}
-                    itemClassName={isLanding ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 transition-colors duration-300'}
+                    desktopClassName={`backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] border ${isLanding ? 'bg-white/10 dark:bg-black/20 border-white/20 dark:border-white/10' : 'bg-white/40 dark:bg-zinc-900/40 border-white/40 dark:border-white/10'} rounded-2xl md:rounded-full px-5 py-2 transition-colors duration-300`}
+                    mobileClassName={`backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] border ${isLanding ? 'bg-white/10 dark:bg-black/20 border-white/20 dark:border-white/10' : 'bg-white/40 dark:bg-zinc-900/40 border-white/40 dark:border-white/10'} rounded-2xl p-2 gap-3 transition-colors duration-300`}
+                    itemClassName={isLanding ? 'bg-white/20 hover:bg-white/30 dark:bg-black/40 dark:hover:bg-black/60 shadow-sm' : 'bg-white/50 hover:bg-white/80 dark:bg-zinc-800/50 dark:hover:bg-zinc-700/80 shadow-sm transition-colors duration-300'}
                 />
             </div>
             {isSettingsOpen && <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}

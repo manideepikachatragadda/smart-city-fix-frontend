@@ -68,7 +68,7 @@ const SendAlertModal = ({ isOpen, onClose }) => {
         <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
             <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={onClose}></div>
 
-            <div className="bg-[#c7d2fe] dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-lg relative z-10 overflow-hidden transform transition-all animate-in fade-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
+            <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-lg relative z-10 overflow-hidden transform transition-all animate-in fade-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
                 {/* Header */}
                 <div className="px-6 py-5 border-b border-slate-100 dark:border-zinc-800 flex justify-between items-center bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-zinc-800 dark:to-zinc-800 shrink-0">
                     <div className="flex items-center gap-3">
@@ -80,7 +80,7 @@ const SendAlertModal = ({ isOpen, onClose }) => {
                             <p className="text-xs text-slate-500 dark:text-zinc-400">Push notification to a team member</p>
                         </div>
                     </div>
-                    <button onClick={onClose} className="text-slate-400 hover:text-slate-700 dark:hover:text-zinc-300 bg-[#c7d2fe] dark:bg-zinc-800 shadow-sm p-1.5 rounded-full border border-slate-200 dark:border-zinc-700 transition-colors">
+                    <button onClick={onClose} className="text-slate-400 hover:text-slate-700 dark:hover:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm p-1.5 rounded-full border border-slate-200 dark:border-zinc-700 transition-colors">
                         <X size={18} />
                     </button>
                 </div>
@@ -101,7 +101,7 @@ const SendAlertModal = ({ isOpen, onClose }) => {
                                     required
                                     value={form.worker_id}
                                     onChange={(e) => setForm({ ...form, worker_id: e.target.value })}
-                                    className="w-full pl-9 pr-4 py-2.5 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none bg-[#c7d2fe] dark:bg-zinc-900 text-slate-900 dark:text-white text-sm appearance-none cursor-pointer transition-colors hover:border-slate-300 dark:hover:border-zinc-600"
+                                    className="w-full pl-9 pr-4 py-2.5 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none bg-white dark:bg-zinc-900 text-slate-900 dark:text-white text-sm appearance-none cursor-pointer transition-colors hover:border-slate-300 dark:hover:border-zinc-600"
                                 >
                                     <option value="">Select a worker…</option>
                                     {workers.map((w) => (
@@ -129,7 +129,7 @@ const SendAlertModal = ({ isOpen, onClose }) => {
                                 placeholder="e.g. Urgent Reassignment"
                                 value={form.title}
                                 onChange={(e) => setForm({ ...form, title: e.target.value })}
-                                className="w-full pl-9 pr-4 py-2.5 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none bg-[#c7d2fe] dark:bg-zinc-900 text-slate-900 dark:text-white text-sm transition-colors hover:border-slate-300 dark:hover:border-zinc-600"
+                                className="w-full pl-9 pr-4 py-2.5 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none bg-white dark:bg-zinc-900 text-slate-900 dark:text-white text-sm transition-colors hover:border-slate-300 dark:hover:border-zinc-600"
                             />
                         </div>
                     </div>
@@ -146,7 +146,7 @@ const SendAlertModal = ({ isOpen, onClose }) => {
                                 placeholder="Write the notification message…"
                                 value={form.message}
                                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                                className="w-full pl-9 pr-4 py-2.5 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none bg-[#c7d2fe] dark:bg-zinc-900 text-slate-900 dark:text-white text-sm resize-none transition-colors hover:border-slate-300 dark:hover:border-zinc-600 custom-scrollbar"
+                                className="w-full pl-9 pr-4 py-2.5 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none bg-white dark:bg-zinc-900 text-slate-900 dark:text-white text-sm resize-none transition-colors hover:border-slate-300 dark:hover:border-zinc-600 custom-scrollbar"
                             />
                         </div>
                         <p className="text-xs text-slate-400 dark:text-zinc-500 mt-1 text-right">{form.message.length}/500</p>

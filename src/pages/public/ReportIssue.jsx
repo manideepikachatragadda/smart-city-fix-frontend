@@ -114,7 +114,14 @@ const Report = () => {
     }, []);
 
     const handleChange = (e) => {
-        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+        let { name, value } = e.target;
+        
+        if (name === 'phone_number') {
+            // Only allow digits, plus, minus, spaces, and parentheses
+            value = value.replace(/[^0-9+\-\s()]/g, '');
+        }
+
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleFileSelect = (e) => {
@@ -138,26 +145,34 @@ const Report = () => {
         setError('');
 
         try {
+            if (!imageFile) {
+                setError('Photo evidence is required.');
+                setLoading(false);
+                return;
+            }
+
             const payload = {
                 phone_number: formData.phone_number,
                 location: formData.location,
                 description: formData.description,
-                ...(formData.name && { name: formData.name }),
-                ...(formData.email && { email: formData.email }),
+                name: formData.name,
+                email: formData.email,
             };
 
-            const response = await submitComplaint(payload, imageFile || null);
+            const response = await submitComplaint(payload, imageFile);
 
             const generatedId = response.id || response.complaint_id || 'UNKNOWN';
             const classification = response.classification || response.nlp_category || 'Uncategorized';
             const priority_level = response.priority || response.priority_level || 'pending';
+            const estimated_resolution_time = response.estimated_resolution_time || null;
 
             toast.success('Complaint submitted successfully!');
             navigate('/success', {
                 state: {
                     complaint_id: generatedId,
                     classification,
-                    priority_level
+                    priority_level,
+                    estimated_resolution_time
                 }
             });
 
@@ -177,8 +192,8 @@ const Report = () => {
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-30 animate-blob"></div>
                 <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-30 animate-blob animation-delay-2000"></div>
 
-                <div className="relative w-full max-w-2xl bg-[#c7d2fe]/90 dark:bg-zinc-900/80 backdrop-blur-xl border border-slate-100 dark:border-zinc-800 p-6 md:p-10 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-zinc-900/50">
-                    <div className="relative w-full max-w-2xl bg-[#c7d2fe]/90 dark:bg-zinc-900/80 backdrop-blur-xl border border-slate-100 dark:border-zinc-800 p-6 md:p-10 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-zinc-900/50">
+                <div className="relative w-full max-w-2xl bg-white/90 dark:bg-zinc-900/80 backdrop-blur-xl border border-slate-100 dark:border-zinc-800 p-6 md:p-10 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-zinc-900/50">
+                    <div className="relative w-full max-w-2xl bg-white/90 dark:bg-zinc-900/80 backdrop-blur-xl border border-slate-100 dark:border-zinc-800 p-6 md:p-10 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-zinc-900/50">
                         <div className="mb-8 text-center gsap-input">
                             <h2 className="text-3xl font-extrabold text-slate-800 dark:text-white">Report an Issue</h2>
                             <p className="text-slate-500 dark:text-zinc-400 mt-2">Help us build a smarter city by reporting civic problems.</p>
@@ -213,7 +228,7 @@ const Report = () => {
                                 </div>
 
                                 <div className="space-y-1 gsap-input">
-                                    <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">Email Address (Optional)</label>
+                                    <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">Email Address *</label>
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 dark:text-zinc-500">
                                             <User size={18} />
@@ -221,6 +236,7 @@ const Report = () => {
                                         <input
                                             type="email"
                                             name="email"
+                                            required
                                             value={formData.email}
                                             onChange={handleChange}
                                             className="pl-10 w-full rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-800 py-3 px-4 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all hover:bg-white dark:hover:bg-zinc-700/80"
@@ -231,7 +247,7 @@ const Report = () => {
                             </div>
 
                             <div className="space-y-1 gsap-input">
-                                <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">Full Name (Optional)</label>
+                                <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">Full Name *</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 dark:text-zinc-500">
                                         <User size={18} />
@@ -239,6 +255,7 @@ const Report = () => {
                                     <input
                                         type="text"
                                         name="name"
+                                        required
                                         value={formData.name}
                                         onChange={handleChange}
                                         className="pl-10 w-full rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-800 py-3 px-4 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all hover:bg-white dark:hover:bg-zinc-700/80"
@@ -283,7 +300,7 @@ const Report = () => {
 
                                 {/* Autocomplete Dropdown */}
                                 {showSuggestions && suggestions.length > 0 && (
-                                    <div className="absolute top-full left-0 z-50 w-full mt-1 bg-[#c7d2fe] dark:bg-zinc-800 rounded-xl shadow-xl border border-slate-100 dark:border-zinc-700 max-h-60 overflow-y-auto">
+                                    <div className="absolute top-full left-0 z-50 w-full mt-1 bg-white dark:bg-zinc-800 rounded-xl shadow-xl border border-slate-100 dark:border-zinc-700 max-h-60 overflow-y-auto">
                                         {suggestions.map((suggestion, index) => (
                                             <div
                                                 key={suggestion.place_id || index}
@@ -319,7 +336,7 @@ const Report = () => {
                             </div>
 
                             <div className="space-y-1 gsap-input">
-                                <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">Photo Evidence (Optional)</label>
+                                <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">Photo Evidence *</label>
                                 <input
                                     type="file"
                                     accept="image/*"

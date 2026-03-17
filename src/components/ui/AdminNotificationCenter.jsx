@@ -103,7 +103,7 @@ const AdminNotificationCenter = ({ isOpen, onClose }) => {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
                         transition={{ duration: 0.2, type: 'spring', damping: 25, stiffness: 300 }}
-                        className="bg-[#c7d2fe] dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-lg relative z-10 overflow-hidden flex flex-col max-h-[90vh]"
+                        className="bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-lg relative z-10 overflow-hidden flex flex-col max-h-[90vh]"
                     >
                         {/* Header */}
                         <div className="px-6 py-5 border-b border-slate-100 dark:border-zinc-800 flex justify-between items-center bg-slate-50/50 dark:bg-zinc-800/50 shrink-0">
@@ -118,7 +118,7 @@ const AdminNotificationCenter = ({ isOpen, onClose }) => {
                             </div>
                             <button
                                 onClick={onClose}
-                                className="text-slate-400 hover:text-slate-700 dark:hover:text-zinc-300 bg-[#c7d2fe] dark:bg-zinc-800 shadow-sm p-1.5 rounded-full border border-slate-200 dark:border-zinc-700 transition-colors"
+                                className="text-slate-400 hover:text-slate-700 dark:hover:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm p-1.5 rounded-full border border-slate-200 dark:border-zinc-700 transition-colors"
                             >
                                 <X size={18} />
                             </button>
@@ -135,7 +135,7 @@ const AdminNotificationCenter = ({ isOpen, onClose }) => {
                                     {selectedUser ? (
                                         <div className="flex items-center justify-between p-3 border border-indigo-200 dark:border-indigo-500/30 bg-indigo-50 dark:bg-indigo-500/10 rounded-xl">
                                             <div className="flex items-center gap-3 overflow-hidden">
-                                                <div className="w-8 h-8 rounded-full bg-[#c7d2fe] dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shadow-sm shrink-0 font-bold text-sm">
+                                                <div className="w-8 h-8 rounded-full bg-white dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shadow-sm shrink-0 font-bold text-sm">
                                                     {selectedUser.first_name[0]}{selectedUser.last_name[0]}
                                                 </div>
                                                 <div className="truncate">
@@ -178,7 +178,7 @@ const AdminNotificationCenter = ({ isOpen, onClose }) => {
                                             </div>
 
                                             {/* Dropdown Results */}
-                                            <div className="max-h-48 overflow-y-auto border border-slate-100 dark:border-zinc-800 rounded-xl bg-[#c7d2fe] dark:bg-zinc-900 shadow-sm custom-scrollbar">
+                                            <div className="max-h-48 overflow-y-auto border border-slate-100 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm custom-scrollbar">
                                                 {filteredUsers.length === 0 ? (
                                                     <p className="p-4 text-sm text-slate-500 dark:text-zinc-400 text-center">No users found.</p>
                                                 ) : (

@@ -9,9 +9,12 @@ const PublicLayout = () => {
     const isLogin = location.pathname === '/login';
 
     return (
-        <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${isLanding ? 'bg-[#040d21] dark:bg-background' : 'bg-[#e0e7ff] dark:bg-background'}`}>
+        <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${isLanding ? 'bg-transparent' : 'bg-slate-50 dark:bg-zinc-950'}`}>
+            {isLanding && (
+                <div className="fixed inset-0 z-0 bg-gradient-to-b from-[#040d21] via-[#062056] to-[#0a1628] dark:from-zinc-950 dark:via-[#062056] dark:to-zinc-950 pointer-events-none" />
+            )}
             <Header />
-            <main className={`flex-grow relative z-10 w-full ${isLanding || isLogin ? '' : 'pt-16 sm:pt-20'} bg-[#e0e7ff] dark:bg-background`}>
+            <main className={`flex-grow relative z-10 w-full ${isLanding || isLogin ? '' : 'pt-16 sm:pt-20'} ${isLanding ? 'bg-transparent' : 'bg-slate-50 dark:bg-zinc-950'}`}>
                 {/* 
                   Using Outlet here means any child route of PublicLayout 
                   in App.jsx will be rendered inside this main block.

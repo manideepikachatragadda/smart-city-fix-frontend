@@ -65,7 +65,7 @@ const ReviewWorkModal = ({ isOpen, complaint, onClose, onReviewSuccess }) => {
                 onClick={handleClose}
             ></div>
 
-            <div className="bg-[#c7d2fe] rounded-3xl shadow-2xl w-full max-w-3xl relative z-10 overflow-hidden transform transition-all animate-in zoom-in-95 fade-in duration-300 max-h-[90vh] flex flex-col">
+            <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl relative z-10 overflow-hidden transform transition-all animate-in zoom-in-95 fade-in duration-300 max-h-[90vh] flex flex-col">
                 {/* Header */}
                 <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center shrink-0">
                     <div className="flex items-center gap-3">
@@ -79,7 +79,7 @@ const ReviewWorkModal = ({ isOpen, complaint, onClose, onReviewSuccess }) => {
                     </div>
                     <button
                         onClick={handleClose}
-                        className="text-slate-400 hover:text-slate-700 bg-[#c7d2fe] shadow-sm p-1.5 rounded-full border border-slate-200 transition-colors"
+                        className="text-slate-400 hover:text-slate-700 bg-white shadow-sm p-1.5 rounded-full border border-slate-200 transition-colors"
                     >
                         <X size={18} />
                     </button>

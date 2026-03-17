@@ -58,7 +58,7 @@ const AssignWorkerModal = ({ isOpen, onClose, complaintId, onAssignmentSuccess }
                 onClick={onClose}
             ></div>
 
-            <div className="bg-[#c7d2fe] rounded-xl shadow-xl w-full max-w-md relative z-10 transform transition-all animate-in zoom-in-95 duration-200 px-6 py-6">
+            <div className="bg-white rounded-xl shadow-xl w-full max-w-md relative z-10 transform transition-all animate-in zoom-in-95 duration-200 px-6 py-6">
                 <h3 className="text-xl font-bold text-slate-800 mb-4">
                     Assign Ticket #{complaintId}
                 </h3>

@@ -156,7 +156,7 @@ const Login = () => {
     return (
         <div className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
             {/* Aceternity-style dot pattern background */}
-            <div className="absolute inset-0 bg-[#c7d2fe] dark:bg-zinc-950 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:16px_16px] transition-colors duration-300"></div>
+            <div className="absolute inset-0 bg-white dark:bg-zinc-950 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:16px_16px] transition-colors duration-300"></div>
 
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 via-transparent to-slate-50/80 dark:from-zinc-900/50 dark:via-zinc-950/20 dark:to-zinc-950/80 transition-colors duration-300"></div>
@@ -168,7 +168,7 @@ const Login = () => {
                 transition={{ duration: 0.5, ease: 'easeOut' }}
                 className="w-full max-w-md relative z-10"
             >
-                <div className="bg-[#c7d2fe] dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl shadow-xl p-8 md:p-10 transition-colors duration-300">
+                <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl shadow-xl p-8 md:p-10 transition-colors duration-300">
                     {/* Brand header */}
                     <div className="flex flex-col items-center mb-8">
                         <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200 dark:shadow-indigo-900/50 mb-4 transition-colors duration-300">

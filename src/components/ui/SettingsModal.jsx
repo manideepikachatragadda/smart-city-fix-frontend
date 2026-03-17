@@ -86,10 +86,10 @@ const SettingsModal = ({ isOpen, onClose }) => {
         <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
             <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={onClose}></div>
 
-            <div className="bg-[#c7d2fe] dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-lg relative z-10 overflow-hidden transform transition-all animate-in fade-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
+            <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl w-full max-w-lg relative z-10 overflow-hidden transform transition-all animate-in fade-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
                 <div className="px-6 py-5 border-b border-slate-100 dark:border-zinc-800 flex justify-between items-center bg-slate-50/50 dark:bg-zinc-800/50 shrink-0">
                     <h3 className="text-lg font-bold text-slate-800 dark:text-white">Settings & Profile</h3>
-                    <button onClick={onClose} className="text-slate-400 hover:text-slate-700 dark:hover:text-zinc-300 bg-[#c7d2fe] dark:bg-zinc-800 shadow-sm p-1.5 rounded-full border border-slate-200 dark:border-zinc-700 transition-colors">
+                    <button onClick={onClose} className="text-slate-400 hover:text-slate-700 dark:hover:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm p-1.5 rounded-full border border-slate-200 dark:border-zinc-700 transition-colors">
                         <X size={18} />
                     </button>
                 </div>
@@ -141,11 +141,11 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
-                                        <div className="p-4 rounded-xl border border-slate-200 dark:border-zinc-700/50 bg-[#c7d2fe] dark:bg-zinc-800/50">
+                                        <div className="p-4 rounded-xl border border-slate-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/50">
                                             <p className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider mb-1">Email</p>
                                             <p className="text-slate-700 dark:text-zinc-300 font-medium truncate">{userProfile.email}</p>
                                         </div>
-                                        <div className="p-4 rounded-xl border border-slate-200 dark:border-zinc-700/50 bg-[#c7d2fe] dark:bg-zinc-800/50">
+                                        <div className="p-4 rounded-xl border border-slate-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/50">
                                             <p className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider mb-1">Role</p>
                                             <p className="text-slate-700 dark:text-zinc-300 font-medium capitalize">{userProfile.role}</p>
                                         </div>
@@ -167,7 +167,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                     <input
                                         type="password" required
                                         value={passwords.password} onChange={e => setPasswords({ ...passwords, password: e.target.value })}
-                                        className="w-full pl-9 pr-4 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                        className="w-full pl-9 pr-4 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
                                     />
                                 </div>
                             </div>
@@ -178,7 +178,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                     <input
                                         type="password" required minLength={6}
                                         value={passwords.new_password} onChange={e => setPasswords({ ...passwords, new_password: e.target.value })}
-                                        className="w-full pl-9 pr-4 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                                        className="w-full pl-9 pr-4 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
                                     />
                                 </div>
                             </div>
@@ -194,11 +194,11 @@ const SettingsModal = ({ isOpen, onClose }) => {
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-zinc-300 mb-1">First Name</label>
-                                    <input type="text" required value={newUser.first_name} onChange={e => setNewUser({ ...newUser, first_name: e.target.value })} className="w-full px-3 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
+                                    <input type="text" required value={newUser.first_name} onChange={e => setNewUser({ ...newUser, first_name: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-zinc-300 mb-1">Last Name</label>
-                                    <input type="text" required value={newUser.last_name} onChange={e => setNewUser({ ...newUser, last_name: e.target.value })} className="w-full px-3 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
+                                    <input type="text" required value={newUser.last_name} onChange={e => setNewUser({ ...newUser, last_name: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
                                 </div>
                             </div>
 
@@ -207,12 +207,12 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                     <label className="block text-sm font-medium text-slate-700 dark:text-zinc-300 mb-1">Username</label>
                                     <div className="relative">
                                         <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-zinc-500" size={16} />
-                                        <input type="text" required value={newUser.username} onChange={e => setNewUser({ ...newUser, username: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
+                                        <input type="text" required value={newUser.username} onChange={e => setNewUser({ ...newUser, username: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
                                     </div>
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-zinc-300 mb-1">Role</label>
-                                    <select disabled={role === 'manager'} value={role === 'manager' ? 'worker' : newUser.role} onChange={e => setNewUser({ ...newUser, role: e.target.value })} className="w-full px-3 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none disabled:bg-slate-50 dark:disabled:bg-zinc-800 disabled:text-slate-500 dark:disabled:text-zinc-500">
+                                    <select disabled={role === 'manager'} value={role === 'manager' ? 'worker' : newUser.role} onChange={e => setNewUser({ ...newUser, role: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none disabled:bg-slate-50 dark:disabled:bg-zinc-800 disabled:text-slate-500 dark:disabled:text-zinc-500">
                                         <option value="worker">Worker</option>
                                         {role === 'admin' && <option value="manager">Manager</option>}
                                         {role === 'admin' && <option value="admin">Admin</option>}
@@ -224,7 +224,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                 <label className="block text-sm font-medium text-slate-700 dark:text-zinc-300 mb-1">Email</label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-zinc-500" size={16} />
-                                    <input type="email" required value={newUser.email} onChange={e => setNewUser({ ...newUser, email: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
+                                    <input type="email" required value={newUser.email} onChange={e => setNewUser({ ...newUser, email: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
                                 </div>
                             </div>
 
@@ -236,7 +236,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                         {role === 'manager' ? (
                                             <input type="text" disabled value={userProfile?.department?.replace('_', ' ') || CATEGORIES[0]} className="w-full pl-9 pr-3 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl outline-none bg-slate-50 dark:bg-zinc-800 text-slate-500 dark:text-zinc-500 capitalize cursor-not-allowed" />
                                         ) : (
-                                            <select required value={newUser.department} onChange={e => setNewUser({ ...newUser, department: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none capitalize cursor-pointer">
+                                            <select required value={newUser.department} onChange={e => setNewUser({ ...newUser, department: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none capitalize cursor-pointer">
                                                 {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat.replace('_', ' ')}</option>)}
                                             </select>
                                         )}
@@ -248,7 +248,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                 <label className="block text-sm font-medium text-slate-700 dark:text-zinc-300 mb-1">Password</label>
                                 <div className="relative">
                                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-zinc-500" size={16} />
-                                    <input type="password" required minLength={6} value={newUser.password} onChange={e => setNewUser({ ...newUser, password: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-[#c7d2fe] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
+                                    <input type="password" required minLength={6} value={newUser.password} onChange={e => setNewUser({ ...newUser, password: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
                                 </div>
                             </div>
 
@@ -287,7 +287,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                             if (success) setNotifSubscribed(false);
                                             setNotifLoading(false);
                                         }}
-                                        className="w-full py-3 bg-[#c7d2fe] dark:bg-transparent text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/30 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl font-medium transition disabled:opacity-50 flex items-center justify-center gap-2"
+                                        className="w-full py-3 bg-white dark:bg-transparent text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/30 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl font-medium transition disabled:opacity-50 flex items-center justify-center gap-2"
                                     >
                                         {notifLoading ? 'Disabling...' : 'Disable Notifications'}
                                     </button>

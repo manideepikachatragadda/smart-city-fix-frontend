@@ -21,8 +21,8 @@ const Navbar = () => {
 
     const getNavClasses = () => {
         if (isLogin) return 'bg-transparent border-transparent shadow-none';
-        if (isLanding) return 'bg-white/5 border-white/10 shadow-black/50 hover:bg-white/10';
-        return 'bg-[#c7d2fe]/90 border-white shadow-slate-200/50 dark:bg-zinc-900/80 dark:border-zinc-800 dark:shadow-none';
+        if (isLanding) return 'bg-white/10 dark:bg-black/20 border-white/20 dark:border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-xl hover:bg-white/20';
+        return 'bg-white/40 dark:bg-zinc-900/40 border-white/40 dark:border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-xl';
     };
 
     const getRoleLabel = () => {
@@ -129,7 +129,7 @@ const Navbar = () => {
                         right: `${dropdownPos.right}px`,
                         zIndex: 9999,
                     }}
-                    className="w-64 origin-top-right rounded-xl bg-[#c7d2fe] dark:bg-zinc-900 shadow-2xl ring-1 ring-black/5 dark:ring-white/10"
+                    className="w-64 origin-top-right rounded-xl bg-white dark:bg-zinc-900 shadow-2xl ring-1 ring-black/5 dark:ring-white/10"
                 >
                     <div className="p-4 border-b border-gray-100 dark:border-zinc-800">
                         <p className="text-sm font-semibold text-gray-900 dark:text-white">{getRoleLabel()} Account</p>

@@ -73,7 +73,7 @@ const CustomNode = ({ data }) => {
     };
 
     return (
-        <div className={`relative bg-[#c7d2fe] dark:bg-zinc-900 shadow-lg rounded-xl border border-gray-100 dark:border-zinc-800 p-4 min-w-[200px] border-t-4 transition-transform hover:scale-105 ${currentStyle.split(' ')[0]}`}>
+        <div className={`relative bg-white dark:bg-zinc-900 shadow-lg rounded-xl border border-gray-100 dark:border-zinc-800 p-4 min-w-[200px] border-t-4 transition-transform hover:scale-105 ${currentStyle.split(' ')[0]}`}>
             <Handle type="target" position={Position.Top} className="!bg-gray-400 dark:!bg-zinc-600 !w-3 !h-3" />
 
             <div className="flex items-center gap-3">
@@ -162,14 +162,14 @@ const HierarchyGraph = () => {
 
     if (nodes.length === 0) {
         return (
-            <div className="flex items-center justify-center p-10 mb-8 bg-[#c7d2fe] dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 h-[300px] w-full">
+            <div className="flex items-center justify-center p-10 mb-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 h-[300px] w-full">
                 <p className="text-slate-500 dark:text-zinc-400">No organizational data available.</p>
             </div>
         );
     }
 
     return (
-        <div className="mb-8 bg-[#c7d2fe] dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col relative z-10 w-full">
+        <div className="mb-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col relative z-10 w-full">
             <div className="px-6 py-5 border-b border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/50 flex items-center gap-3">
                 <h3 className="text-lg font-bold text-slate-800 dark:text-white">Organization Hierarchy</h3>
             </div>

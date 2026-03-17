@@ -56,7 +56,7 @@ const TrackComplaint = () => {
                 </div>
 
                 {/* Search Card */}
-                <div className="w-full max-w-2xl bg-[#c7d2fe] dark:bg-zinc-900 p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200 dark:shadow-zinc-900/50 border border-slate-100 dark:border-zinc-800 z-10 mb-8">
+                <div className="w-full max-w-2xl bg-white dark:bg-zinc-900 p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200 dark:shadow-zinc-900/50 border border-slate-100 dark:border-zinc-800 z-10 mb-8">
                     <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
                         <div className="relative flex-grow">
                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 dark:text-zinc-500">
@@ -88,7 +88,7 @@ const TrackComplaint = () => {
 
                 {/* Results Card */}
                 {complaint && (
-                    <div className="w-full max-w-2xl bg-[#c7d2fe] dark:bg-zinc-900 p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200 dark:shadow-zinc-900/50 border border-slate-100 dark:border-zinc-800 z-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div className="w-full max-w-2xl bg-white dark:bg-zinc-900 p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200 dark:shadow-zinc-900/50 border border-slate-100 dark:border-zinc-800 z-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <div className="flex justify-between items-start mb-8 pb-6 border-b border-slate-100 dark:border-zinc-800">
                             <div>
                                 <h3 className="text-xl font-bold text-slate-800 dark:text-white">Ticket #{String(complaint.complaint_id).padStart(5, '0')}</h3>
@@ -117,7 +117,7 @@ const TrackComplaint = () => {
 
                                     return (
                                         <div key={step.key} className="flex flex-col items-center gap-3">
-                                            <div className={`w-12 h-12 rounded-full flex items-center justify-center border-4 transition-all duration-500 ${isCompleted ? 'bg-indigo-600 border-indigo-100 dark:border-indigo-900/30 text-white' : 'bg-[#c7d2fe] dark:bg-zinc-900 border-slate-100 dark:border-zinc-800 text-slate-300 dark:text-zinc-600'} ${isCurrent ? 'ring-4 ring-indigo-50 dark:ring-indigo-900/20 scale-110 shadow-lg' : ''}`}>
+                                            <div className={`w-12 h-12 rounded-full flex items-center justify-center border-4 transition-all duration-500 ${isCompleted ? 'bg-indigo-600 border-indigo-100 dark:border-indigo-900/30 text-white' : 'bg-white dark:bg-zinc-900 border-slate-100 dark:border-zinc-800 text-slate-300 dark:text-zinc-600'} ${isCurrent ? 'ring-4 ring-indigo-50 dark:ring-indigo-900/20 scale-110 shadow-lg' : ''}`}>
                                                 <Icon size={20} />
                                             </div>
                                             <span className={`text-xs font-bold uppercase tracking-wider ${isCurrent ? 'text-indigo-600 dark:text-indigo-400' : isCompleted ? 'text-slate-700 dark:text-zinc-300' : 'text-slate-400 dark:text-zinc-600'}`}>

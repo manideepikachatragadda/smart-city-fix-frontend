@@ -84,7 +84,7 @@ const ComplaintDetail = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-4">
-                        <button onClick={() => navigate(-1)} className="p-2 bg-[#c7d2fe] border border-slate-200 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors shadow-sm">
+                        <button onClick={() => navigate(-1)} className="p-2 bg-white border border-slate-200 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors shadow-sm">
                             <ArrowLeft size={18} />
                         </button>
                         <div>
@@ -122,7 +122,7 @@ const ComplaintDetail = () => {
                     <div className="lg:col-span-2 space-y-6">
 
                         {/* NLP AI Card */}
-                        <div className="bg-[#c7d2fe] rounded-2xl p-6 border border-slate-200 shadow-sm split-view-panel">
+                        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm split-view-panel">
                             <div className="flex items-center gap-2 mb-6 border-b border-slate-100 pb-4">
                                 <Activity className="text-indigo-500 w-5 h-5" />
                                 <h3 className="text-lg font-bold text-slate-800">AI Intelligence Analysis</h3>
@@ -142,11 +142,20 @@ const ComplaintDetail = () => {
                                     <p className="text-xs text-slate-500 mb-1 font-medium">Severity Score</p>
                                     <p className="font-bold text-slate-800">{complaint.priority_score || 0}/10</p>
                                 </div>
+
+                                {complaint.estimated_resolution_time && (
+                                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                        <p className="text-xs text-slate-500 mb-1 font-medium">Est. Resolution</p>
+                                        <p className="font-bold text-slate-800 whitespace-nowrap overflow-hidden text-ellipsis">
+                                            {new Date(complaint.estimated_resolution_time).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
                         {/* Report Details Card */}
-                        <div className="bg-[#c7d2fe] rounded-2xl p-6 border border-slate-200 shadow-sm split-view-panel">
+                        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm split-view-panel">
                             <div className="flex items-center gap-2 mb-6 border-b border-slate-100 pb-4">
                                 <AlignLeft className="text-slate-500 w-5 h-5" />
                                 <h3 className="text-lg font-bold text-slate-800">Report Details</h3>
@@ -179,7 +188,7 @@ const ComplaintDetail = () => {
                     <div className="space-y-6">
 
                         {/* Action Panel */}
-                        <div className="bg-[#c7d2fe] rounded-2xl p-6 border border-slate-200 shadow-sm split-view-panel relative overflow-hidden text-center sm:text-left">
+                        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm split-view-panel relative overflow-hidden text-center sm:text-left">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -z-10"></div>
 
                             <div className="flex items-center justify-center sm:justify-start gap-2 mb-6 border-b border-slate-100 pb-4">
@@ -208,7 +217,7 @@ const ComplaintDetail = () => {
                                         disabled={updating || complaint.status === status}
                                         className={`w-full py-3 px-4 rounded-xl text-sm font-bold uppercase tracking-wide border transition-all text-center flex justify-center items-center ${complaint.status === status
                                             ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed hidden'
-                                            : 'bg-[#c7d2fe] text-slate-700 border-slate-200 hover:border-indigo-500 hover:text-indigo-600 shadow-sm hover:shadow active:scale-95'
+                                            : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-500 hover:text-indigo-600 shadow-sm hover:shadow active:scale-95'
                                             }`}
                                     >
                                         Mark as {status.replace('_', ' ')}
@@ -218,7 +227,7 @@ const ComplaintDetail = () => {
                         </div>
 
                         {/* Contact Info Panel */}
-                        <div className="bg-[#c7d2fe] rounded-2xl p-6 border border-slate-200 shadow-sm split-view-panel">
+                        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm split-view-panel">
                             <h3 className="text-sm font-bold text-slate-800 mb-4 uppercase tracking-wider text-slate-500">Reporter Information</h3>
 
                             <ul className="space-y-4">

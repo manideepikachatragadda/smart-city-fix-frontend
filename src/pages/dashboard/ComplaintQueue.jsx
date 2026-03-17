@@ -76,10 +76,10 @@ const ComplaintQueue = () => {
                                 placeholder="Search ID, Location..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10 pr-4 py-2 border border-slate-200 rounded-xl bg-[#c7d2fe] focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+                                className="pl-10 pr-4 py-2 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
                             />
                         </div>
-                        <button className="flex items-center gap-2 px-4 py-2 bg-[#c7d2fe] border border-slate-200 rounded-xl text-slate-600 hover:bg-slate-50 transition-colors shadow-sm">
+                        <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:bg-slate-50 transition-colors shadow-sm">
                             <Filter size={18} /> Filter
                         </button>
                     </div>
@@ -90,7 +90,7 @@ const ComplaintQueue = () => {
                         <div className="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
                     </div>
                 ) : (
-                    <div className="bg-[#c7d2fe] rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse min-w-[800px]">
                                 <thead>
