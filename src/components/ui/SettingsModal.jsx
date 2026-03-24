@@ -16,7 +16,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
     // Password Form State
     const [passwords, setPasswords] = useState({ password: '', new_password: '' });
 
-    const CATEGORIES = ['water', 'electricity', 'cleanliness', 'infrastructure', 'others'];
+    const CATEGORIES = ['water', 'electricity', 'sanitation', 'infrastructure','police','medical', 'others'];
 
     // Register Form State
     const [newUser, setNewUser] = useState({
