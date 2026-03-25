@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, User, Lock, UserPlus, Mail, Briefcase, Bell } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, User, Lock, UserPlus, Mail, Briefcase, Bell, MapPin, Loader2, Crosshair } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { getCurrentUser, changePassword, createStaff } from '../../services/api';
 import useAuthStore from '../../contexts/AuthContext';
@@ -16,12 +16,94 @@ const SettingsModal = ({ isOpen, onClose }) => {
     // Password Form State
     const [passwords, setPasswords] = useState({ password: '', new_password: '' });
 
-    const CATEGORIES = ['water', 'electricity', 'sanitation', 'infrastructure','police','medical', 'others'];
+    const CATEGORIES = ['water', 'electricity', 'cleanliness', 'infrastructure', 'others'];
 
     // Register Form State
     const [newUser, setNewUser] = useState({
-        username: '', email: '', first_name: '', last_name: '', password: '', role: 'worker', department: CATEGORIES[0]
+        username: '', email: '', first_name: '', last_name: '', password: '', role: 'worker', department: CATEGORIES[0], location: ''
     });
+
+    // Location Suggestion State
+    const [suggestions, setSuggestions] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [isLocating, setIsLocating] = useState(false);
+    const searchTimeout = useRef(null);
+
+    const handleLocationSearch = (query) => {
+        if (!query || query.length < 3) {
+            setSuggestions([]);
+            setShowSuggestions(false);
+            return;
+        }
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5`)
+            .then(res => res.json())
+            .then(data => {
+                setSuggestions(data);
+                setShowSuggestions(true);
+            })
+            .catch(err => console.error('Error fetching suggestions:', err));
+    };
+
+    const handleLocationChange = (e) => {
+        const value = e.target.value;
+        setNewUser(prev => ({ ...prev, location: value }));
+
+        if (searchTimeout.current) {
+            clearTimeout(searchTimeout.current);
+        }
+
+        searchTimeout.current = setTimeout(() => {
+            handleLocationSearch(value);
+        }, 500);
+    };
+
+    const handleSuggestionClick = (suggestion) => {
+        setNewUser(prev => ({ ...prev, location: suggestion.display_name }));
+        setSuggestions([]);
+        setShowSuggestions(false);
+    };
+
+    const handleLocateMe = () => {
+        if (!navigator.geolocation) {
+            toast.error('Geolocation is not supported by your browser.');
+            return;
+        }
+
+        setIsLocating(true);
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const { latitude, longitude } = position.coords;
+                try {
+                    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+                    const data = await res.json();
+
+                    if (data && data.display_name) {
+                        setNewUser(prev => ({ ...prev, location: data.display_name }));
+                        setSuggestions([]);
+                        setShowSuggestions(false);
+                        toast.success('Location found!');
+                    } else {
+                        toast.error('Could not determine exact address.');
+                    }
+                } catch (err) {
+                    console.error('Reverse Geoding Error:', err);
+                    toast.error('Failed to get address from coordinates.');
+                } finally {
+                    setIsLocating(false);
+                }
+            },
+            (err) => {
+                console.error('Geolocation Error:', err);
+                setIsLocating(false);
+                if (err.code === 1) {
+                    toast.error('Location access denied. Please type your address.');
+                } else {
+                    toast.error('Failed to get your location.');
+                }
+            },
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+    };
 
     useEffect(() => {
         if (isOpen && activeTab === 'profile' && !userProfile) {
@@ -72,7 +154,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
             }
             await createStaff(payload);
             toast.success('User created successfully');
-            setNewUser({ username: '', email: '', first_name: '', last_name: '', password: '', role: 'worker', department: CATEGORIES[0] });
+            setNewUser({ username: '', email: '', first_name: '', last_name: '', password: '', role: 'worker', department: CATEGORIES[0], location: '' });
         } catch (err) {
             toast.error(err.response?.data?.detail || err.response?.data?.detail?.[0]?.msg || 'Failed to create user');
         } finally {
@@ -226,6 +308,27 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-zinc-500" size={16} />
                                     <input type="email" required value={newUser.email} onChange={e => setNewUser({ ...newUser, email: e.target.value })} className="w-full pl-9 pr-3 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
                                 </div>
+                            </div>
+
+                            <div className="relative z-50">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-zinc-300 mb-1">Location</label>
+                                <div className="relative">
+                                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-zinc-500" size={16} />
+                                    <input type="text" required autoComplete="off" value={newUser.location} onChange={handleLocationChange} onFocus={() => { if (suggestions.length > 0) setShowSuggestions(true); }} onBlur={() => { setTimeout(() => setShowSuggestions(false), 200); }} placeholder="e.g. Block A, Room 101" className="w-full pl-9 pr-10 py-2 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" />
+                                    <button type="button" onClick={handleLocateMe} disabled={isLocating} className="absolute inset-y-0 right-2 flex items-center justify-center p-1 text-slate-400 hover:text-indigo-600 dark:text-zinc-500 dark:hover:text-indigo-400 transition-colors disabled:opacity-50" title="Locate Me">
+                                        {isLocating ? <Loader2 size={16} className="animate-spin text-indigo-500" /> : <Crosshair size={16} />}
+                                    </button>
+                                </div>
+                                {showSuggestions && suggestions.length > 0 && (
+                                    <div className="absolute top-full left-0 z-50 w-full mt-1 bg-white dark:bg-zinc-800 rounded-xl shadow-xl border border-slate-100 dark:border-zinc-700 max-h-60 overflow-y-auto">
+                                        {suggestions.map((suggestion, index) => (
+                                            <div key={suggestion.place_id || index} className="px-4 py-3 cursor-pointer hover:bg-slate-50 dark:hover:bg-zinc-700 border-b border-slate-50 dark:border-zinc-700/50 last:border-0 transition-colors flex items-start gap-3" onClick={() => handleSuggestionClick(suggestion)}>
+                                                <MapPin size={16} className="text-slate-400 dark:text-zinc-500 mt-0.5 flex-shrink-0" />
+                                                <span className="text-sm text-slate-700 dark:text-zinc-300 line-clamp-2">{suggestion.display_name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
                             {((role === 'admin' && newUser.role !== 'admin') || role === 'manager') && (
