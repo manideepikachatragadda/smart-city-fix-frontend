@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('access_token');
         setAuthState({ token: null, isAuthenticated: false, role: null, department: null });
-        window.location.href = '/login';
     };
 
     return (

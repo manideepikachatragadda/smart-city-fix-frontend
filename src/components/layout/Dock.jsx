@@ -7,7 +7,7 @@ import {
     IconLayoutDashboard,
     IconListCheck,
     IconLogin,
-    IconLogout,
+    IconPower,
     IconSettings,
 } from "@tabler/icons-react";
 import useAuthStore from "../../contexts/AuthContext";
@@ -83,7 +83,7 @@ export function FloatingDockDemo() {
         // Logout
         links.push({
             title: "Logout",
-            icon: <IconLogout className="h-full w-full text-red-400" />,
+            icon: <IconPower className="h-full w-full text-red-500" />,
             href: "#",
             onClick: handleLogout,
         });

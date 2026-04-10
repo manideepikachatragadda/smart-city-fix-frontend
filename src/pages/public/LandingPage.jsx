@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import gsap from 'gsap';
 import { ArrowRight, MapPin, Camera, CheckCircle } from 'lucide-react';
 import PageWrapper from '../../components/layout/PageWrapper';
+import useAuthStore from '../../contexts/AuthContext';
 
 // Vite-compatible lazy loading
 const World = React.lazy(() =>
@@ -48,6 +49,7 @@ const sampleArcs = [
 
 const Home = () => {
     const stepsRef = useRef([]);
+    const { isAuthenticated } = useAuthStore();
 
     useEffect(() => {
         gsap.fromTo(
@@ -98,10 +100,10 @@ const Home = () => {
                                     <ArrowRight size={20} />
                                 </Link>
                                 <Link
-                                    to="/login"
+                                    to={isAuthenticated ? "/dashboard" : "/login"}
                                     className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl text-white bg-white/10 border border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all hover:-translate-y-0.5 gap-2"
                                 >
-                                    Staff Portal
+                                    {isAuthenticated ? "Dashboard" : "Staff Portal"}
                                 </Link>
                             </div>
                         </motion.div>

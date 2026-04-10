@@ -20,7 +20,13 @@ const Login = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const navigate = useNavigate();
-    const { login } = useAuthStore();
+    const { login, isAuthenticated } = useAuthStore();
+
+    React.useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/dashboard');
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleLogin = async (e) => {
         // 1. THIS IS NON-NEGOTIABLE. It stops the URL reload.
